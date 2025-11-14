@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route, Link, NavLink } from 'react-router-dom'
+import { Routes, Route, Link, NavLink } from 'react-router-dom'
 import { Phone, Calendar, MapPin, Clock, ShieldCheck, ChevronRight, HeartPulse } from 'lucide-react'
 import Spline from '@splinetool/react-spline'
 
@@ -55,7 +55,7 @@ const Header = () => (
           ['/contact', 'Contact & Location'],
           ['/request-appointment', 'Appointment Request']
         ].map(([to, label]) => (
-          <NavLink key={to} to={to} className={({isActive})=>`hover:text-[${BRAND.blue}] ${isActive? 'text-slate-900 font-semibold' : 'text-slate-600'}`}>
+          <NavLink key={to} to={to} className={({isActive})=>`hover:underline ${isActive? 'text-slate-900 font-semibold' : 'text-slate-600'}`}>
             {label}
           </NavLink>
         ))}
@@ -474,20 +474,18 @@ const Footer = () => (
   </footer>
 )
 
-// Router wrapper for pages
+// App only renders routes; BrowserRouter is provided in src/main.jsx
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/services" element={<ServicesPage />} />
-        <Route path="/patient-info" element={<PatientInfoPage />} />
-        <Route path="/insurance" element={<InsurancePage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/request-appointment" element={<AppointmentPage />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/services" element={<ServicesPage />} />
+      <Route path="/patient-info" element={<PatientInfoPage />} />
+      <Route path="/insurance" element={<InsurancePage />} />
+      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/request-appointment" element={<AppointmentPage />} />
+    </Routes>
   )
 }
 
